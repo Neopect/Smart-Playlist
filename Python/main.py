@@ -9,3 +9,5 @@ config_exists = os.path.isdir('config')
 if (config_exists == False):
     genConfig()
 
+readConfig()
+print(confFile)
