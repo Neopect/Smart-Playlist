@@ -6,20 +6,10 @@ secret = "null"
 gPlayl = []
 playl = []
 
-# def init():
-#     global confFile
-#     global id
-#     global secret
-#     global gPlayl
-#     global playl
-
-# confFile = []
-# id = "null"
-# secret = "null"
-# gPlayl = []
-# playl = []
 
 def genConfig():
+    # Creates the basic config file for saving
+    # and reading data for the program.
     print("Generating config folder...")
     os.mkdir("config")
 
@@ -35,6 +25,8 @@ def genConfig():
     fw.close()
 
 def readConfig():
+    # Reads config file and sets them
+    # in the interrupter's memory
     global id
     global secret
     global confFile
@@ -105,16 +97,35 @@ def readConfig():
     print(secret)
     print(gPlayl)
     print(playl)
-    # updateVar()
 
-# def getID():
-#     print(id)
-#     return id
 
-# def updateVar():
-#     globals.confFile = confFile
-#     print(id)
-#     globals.id = id
-#     globals.secret = secret
-#     globals.gPlayl = gPlayl
-#     globals.playl = playl
+def formatCheck():
+    global playl
+    global gPlayl
+    # Checks if the urls are in proper format
+    for x, val in enumerate(playl):
+        if val.startswith("https://open.spotify.com/playlist/"):
+            print(val[len("https://open.spotify.com/playlist/"):-20])
+            playl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
+
+    for x, val in enumerate(gPlayl):
+        if val.startswith("https://open.spotify.com/playlist/"):
+            print(val[len("https://open.spotify.com/playlist/"):-20])
+            gPlayl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
+            
+
+
+
+# def removeprefix(self: str, prefix: str, /) -> str:
+#     if self.startswith(prefix):
+#         return self[len(prefix):]
+#     else:
+#         return self[:]
+
+# def removesuffix(self: str, suffix: str, /) -> str:
+#     # suffix='' should not call self[:-0].
+#     if suffix and self.endswith(suffix):
+#         return self[:-len(suffix)]
+#     else:
+#         return self[:]
+
