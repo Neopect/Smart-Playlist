@@ -93,10 +93,10 @@ def readConfig():
 
         
         
-    print(id)
-    print(secret)
-    print(gPlayl)
-    print(playl)
+    # print(id)
+    # print(secret)
+    # print(gPlayl)
+    # print(playl)
 
 
 def formatCheck():
