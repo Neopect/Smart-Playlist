@@ -48,11 +48,11 @@ def createRands(pid, name):
     print("Adding tracks to memory...")
     fw = open("config/playlist_org_"+name+".json", "r")
     dTrack = json.load(fw)
-    print(dTrack['items'][0]['track']['name'])
+    #print(dTrack['items'][0]['track']['name'])
 
-    for x, val in enumerate(dTrack['items']):
-        print()
-        plist_sec.append[val['track']['name'], val['track']['artists']['name'], val['track']['id']]
+    for x in range(len(dTrack['items'])):
+        #print(dTrack['items'][x]['track']['name'])
+        plist_sec.append([dTrack['items'][x]['track']['name'], dTrack['items'][x]['track']['artists'][0]['name'], dTrack['items'][x]['track']['id']])
 
 def exceptions():
     print()
@@ -76,7 +76,7 @@ for x, val in enumerate(config.playl):
     xstr = str(x)
     createRands(val, 'per_'+ xstr)
 
-
+print(plist_sec)
 
 # fw = open("dump_tracks3.json", "r")
 # dTrack = json.load(fw)
