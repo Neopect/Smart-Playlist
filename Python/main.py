@@ -4,6 +4,7 @@ import config
 import os.path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import json
 
 plist_org = []
 plist_sec = []
@@ -24,14 +25,6 @@ else:
                                                            client_secret=config.secret))
 
 
-#config.init()
-# x = config.id
-# print("X equals = " + x)
-
-
-
-# print(config.gPlayl)
-# print(config.playl)
 
 
 
@@ -40,18 +33,26 @@ def testRun():
     for idx, track in enumerate(results['tracks']['items']):
         print(idx, track['name'])
 
-def createRands():
+def createRands(pid, name):
     # Creates the random playlists
-    print()
+    print("Downloading playlist info...")
     
-    # Just wporking demo so far
-    playlist_id = 'spotify:user:spotifycharts:playlist:3PGHzE2Tqab3V5xH6JyVcW'
-    results = sp.playlist_tracks(playlist_id,fields="items(track(name,artists(name),id,href))", market="US")
+    playlist_id = 'spotify:playlist:' + pid
+    results = sp.playlist_tracks(playlist_id,fields="items(track(name,artists(name),id,href)),total", market="US")
 
-    fw = open("dump_tracks3.json", "w")
+    fw = open("config/playlist_org_"+name+".json", "w")
     fw.write(json.dumps(results, indent=4))
 
-    print(json.dumps(results, indent=4))
+    # print(json.dumps(results, indent=4))
+
+    print("Adding tracks to memory...")
+    fw = open("config/playlist_org_"+name+".json", "r")
+    dTrack = json.load(fw)
+    print(dTrack['items'][0]['track']['name'])
+
+    for x, val in enumerate(dTrack['items']):
+        print()
+        plist_sec.append[val['track']['name'], val['track']['artists']['name'], val['track']['id']]
 
 def exceptions():
     print()
@@ -61,3 +62,22 @@ def mixComb():
 
 def dupCheck():
     print()
+
+
+
+for x, val in enumerate(config.gPlayl):
+    print("Opening universal playlists...")
+    xstr = str(x)
+    createRands(val, 'uni_'+ xstr)
+    
+
+for x, val in enumerate(config.playl):
+    print("Opening personal playlists...")
+    xstr = str(x)
+    createRands(val, 'per_'+ xstr)
+
+
+
+# fw = open("dump_tracks3.json", "r")
+# dTrack = json.load(fw)
+# print(dTrack)
