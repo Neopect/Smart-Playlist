@@ -37,22 +37,28 @@ def createRands(pid, name):
     # Creates the random playlists
     print("Downloading playlist info...")
     
-    playlist_id = 'spotify:playlist:' + pid
-    results = sp.playlist_tracks(playlist_id,fields="items(track(name,artists(name),id,href)),total", market="US")
+    done = False
+    ofs = 0
+    plist_temp = []
 
-    fw = open("config/playlist_org_"+name+".json", "w")
-    fw.write(json.dumps(results, indent=4))
+    while done == False:
 
-    # print(json.dumps(results, indent=4))
+        playlist_id = 'spotify:playlist:' + pid
+        results = sp.playlist_tracks(playlist_id,fields="items(track(name,artists(name),id,href)),total", offset=ofs, market="US")
+        
+        fw = open("config/playlist_org_"+name+"_part_"+str(int(ofs/100))+".json", "w")
+        fw.write(json.dumps(results, indent=4))
 
-    print("Adding tracks to memory...")
-    fw = open("config/playlist_org_"+name+".json", "r")
-    dTrack = json.load(fw)
-    #print(dTrack['items'][0]['track']['name'])
+        print("Adding tracks to memory...")
+        for x in range(len(results['items'])):
+            plist_temp.append([results['items'][x]['track']['name'], results['items'][x]['track']['artists'][0]['name'], results['items'][x]['track']['id']])
 
-    for x in range(len(dTrack['items'])):
-        #print(dTrack['items'][x]['track']['name'])
-        plist_sec.append([dTrack['items'][x]['track']['name'], dTrack['items'][x]['track']['artists'][0]['name'], dTrack['items'][x]['track']['id']])
+        if results['total'] > ofs:
+            ofs += 100
+        else:
+            done = True
+
+    plist_sec.append(plist_temp)
 
 def exceptions():
     print()
