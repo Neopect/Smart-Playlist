@@ -5,6 +5,7 @@ id = "null"
 secret = "null"
 gPlayl = []
 playl = []
+users = []
 
 
 def genConfig():
@@ -64,6 +65,14 @@ def readConfig():
             confFile.pop(xdex)
         xdex += 1
 
+    xdex = 0
+    for x in confFile:
+        if x.startswith('$'):
+            users.append(x[len('$'):])
+            confFile.pop(xdex)
+        xdex += 1
+
+
     # =========================================================
 
     # global id
@@ -116,11 +125,11 @@ def formatCheck():
 
 
 
-# def removeprefix(self: str, prefix: str, /) -> str:
-#     if self.startswith(prefix):
-#         return self[len(prefix):]
-#     else:
-#         return self[:]
+def removeprefix(self: str, prefix: str, /) -> str:
+    if self.startswith(prefix):
+        return self[len(prefix):]
+    else:
+        return self[:]
 
 # def removesuffix(self: str, suffix: str, /) -> str:
 #     # suffix='' should not call self[:-0].

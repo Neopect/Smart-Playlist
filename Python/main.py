@@ -78,4 +78,6 @@ for x, val in enumerate(config.playl):
     print("Opening personal playlists...")
     downloadPlist(val, 'per_'+ str(x))
 
+
+
 print(plist_sec)

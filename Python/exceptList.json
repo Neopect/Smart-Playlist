@@ -1,0 +1,56 @@
+{
+    "Version": 0.5,
+    "Date": 927,
+    "Users": [
+        "Tyler",
+        "Tavin",
+        "Alex",
+        "Drew",
+        "Nick",
+        "Sam"
+    ],
+
+    "Playlists": [
+        ["Tyler", "Tavin", "Sam"],
+        ["Tyler", "Alex", "Drew"],
+        ["Tavin", "Nick", "Sam"],
+        ["Tyler", "Tavin", "Nick", "Sam"],
+        ["Tyler", "Tavin", "Drew", "Sam"]
+    ],
+
+    "Old Playlists": {
+        "Playlists": [
+            ["Tyler", "Tavin", "Sam"],
+            ["Tyler", "Alex", "Drew"],
+            ["Tyler", "Alex", "Sam"],
+            ["Tyler", "Drew", "Nick"],
+            ["Tyler", "Drew", "Sam"],
+            ["Tyler", "Nick", "Sam"],
+            
+            
+            ["Tavin", "Alex", "Drew"],
+            ["Tavin", "Alex", "Sam"],
+            ["Tavin", "Drew", "Nick"],
+            ["Tavin", "Drew", "Sam"],
+            ["Tavin", "Nick", "Sam"],
+            
+            
+    
+            ["Tyler", "Tavin", "Nick", "Sam"],
+            ["Tyler", "Tavin", "Alex", "Drew"],
+            ["Tyler", "Tavin", "Alex", "Sam"],
+            ["Tyler", "Tavin", "Drew", "Nick"],
+            ["Tyler", "Tavin", "Drew", "Sam"],
+            ["Tyler", "Tavin", "Nick", "Sam"]
+    
+        ],
+        "PlistTotals": {
+            "Tyler": 6,
+            "Tavin": 5,
+            "Both": 6,
+            "Total": 17
+        }
+    }
+    
+        
+}

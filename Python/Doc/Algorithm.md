@@ -73,3 +73,30 @@
 ### Dup Check
 1. If same song is present remove dup
 2. Add random song from Uni list
+
+# Algorithm (Long version)
+- [X] Read config
+  - [X] Create config file
+  - [X] Read config file
+  - [X] Clean data
+  - [X] Convert URL to proper playlist
+  - [X] Mark down names
+  - [X] Set everything to global
+- [X] Download playlist data
+  - [ ] Check if it should re-download the playlist
+  - [ ] Read files instead of downloading
+  - [X] Read each url and download json of track data
+  - [X] Format json string to python list
+  - [X] Loop through the entire playlist
+  - [X] Copy temp list to master list
+- [ ] Handle exceptions
+  - [ ] Read users list and tell which to ignore
+  - [ ] Remove the user and playlist index from both lists
+- [ ] Explicit content
+  - [ ] If the song is explicit remove it from list
+- [ ] Mixing lists
+  - [ ] Take 50 songs from each playlist and add them to active list
+  - [ ] Remove copied songs from org list
+  - [ ] Add global playlist
+  - [ ] Remove dups and replace with global
+  - [ ] Repeat 3 times
