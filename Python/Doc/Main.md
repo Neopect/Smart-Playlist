@@ -4,8 +4,9 @@
 - Create playlist's based on multiple users playlist
 - Create multiple playlist with different tracks to mix up music
 
+---
 
-# Steps of program
+## Steps of program:
 1. Program initializes
 2. Creates save folder
    - Conf file
@@ -15,3 +16,9 @@
 5. Creates playlists
 6. Uploads playlists
 
+---
+
+## Playlist name scheme
+First letters-VF-Coasters
+
+*ex. TSTND-VF-Coasters*

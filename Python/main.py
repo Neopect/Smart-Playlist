@@ -5,6 +5,7 @@ import os.path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import json
+import random
 
 plist_org = []
 plist_sec = []
@@ -26,14 +27,7 @@ else:
 
 
 
-
-
-def testRun():
-    results = sp.search(q='weezer', limit=20)
-    for idx, track in enumerate(results['tracks']['items']):
-        print(idx, track['name'])
-
-def createRands(pid, name):
+def downloadPlist(pid, name):
     # Creates the random playlists
     print("Downloading playlist info...")
     
@@ -60,6 +54,10 @@ def createRands(pid, name):
 
     plist_sec.append(plist_temp)
 
+def randPlists():
+    
+    print()
+
 def exceptions():
     print()
 
@@ -73,17 +71,11 @@ def dupCheck():
 
 for x, val in enumerate(config.gPlayl):
     print("Opening universal playlists...")
-    xstr = str(x)
-    createRands(val, 'uni_'+ xstr)
+    downloadPlist(val, 'uni_'+ str(x))
     
 
 for x, val in enumerate(config.playl):
     print("Opening personal playlists...")
-    xstr = str(x)
-    createRands(val, 'per_'+ xstr)
+    downloadPlist(val, 'per_'+ str(x))
 
 print(plist_sec)
-
-# fw = open("dump_tracks3.json", "r")
-# dTrack = json.load(fw)
-# print(dTrack)
