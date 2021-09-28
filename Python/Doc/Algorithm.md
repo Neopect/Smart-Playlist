@@ -94,9 +94,9 @@
   - [ ] Remove the user and playlist index from both lists
 - [ ] Explicit content
   - [ ] If the song is explicit remove it from list
-- [ ] Mixing lists
-  - [ ] Take 50 songs from each playlist and add them to active list
-  - [ ] Remove copied songs from org list
-  - [ ] Add global playlist
+- [X] Mixing lists
+  - [X] Take 50 songs from each playlist and add them to active list
+  - [X] Remove copied songs from org list
+  - [X] Add global playlist
   - [ ] Remove dups and replace with global
-  - [ ] Repeat 3 times
+  - [X] Repeat 3 times

@@ -28,11 +28,8 @@ def genConfig():
 def readConfig():
     # Reads config file and sets them
     # in the interrupter's memory
-    global id
-    global secret
-    global confFile
-    global gPlayl
-    global playl
+    global id, secret, confFile
+    
     fw = open("config/config.conf", "r")
     for x in fw:
         confFile.append(x)
@@ -122,19 +119,3 @@ def formatCheck():
             print(val[len("https://open.spotify.com/playlist/"):-20])
             gPlayl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
             
-
-
-
-def removeprefix(self: str, prefix: str, /) -> str:
-    if self.startswith(prefix):
-        return self[len(prefix):]
-    else:
-        return self[:]
-
-# def removesuffix(self: str, suffix: str, /) -> str:
-#     # suffix='' should not call self[:-0].
-#     if suffix and self.endswith(suffix):
-#         return self[:-len(suffix)]
-#     else:
-#         return self[:]
-

@@ -1,6 +1,7 @@
 config/
 testing.py
 testing/
+pNotes.md 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

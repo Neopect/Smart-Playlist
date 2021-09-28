@@ -10,7 +10,9 @@ import random
 plist_org = []
 plist_sec = []
 plist_act = []
+plist_mas = []
 global sp
+userTrackLim = 50
 
 print("Welcome to Smart-Playlist \nCreated by Tyler Moen\n")
 
@@ -42,6 +44,7 @@ def downloadPlist(pid, name):
         
         fw = open("config/playlist_org_"+name+"_part_"+str(int(ofs/100))+".json", "w")
         fw.write(json.dumps(results, indent=4))
+        fw.close()
 
         print("Adding tracks to memory...")
         for x in range(len(results['items'])):
@@ -52,7 +55,8 @@ def downloadPlist(pid, name):
         else:
             done = True
 
-    plist_sec.append(plist_temp)
+    random.shuffle(plist_temp)
+    plist_org.append(plist_temp)
 
 def randPlists():
     
@@ -68,7 +72,7 @@ def dupCheck():
     print()
 
 
-
+# Download the playlist tracks to json
 for x, val in enumerate(config.gPlayl):
     print("Opening universal playlists...")
     downloadPlist(val, 'uni_'+ str(x))
@@ -78,6 +82,22 @@ for x, val in enumerate(config.playl):
     print("Opening personal playlists...")
     downloadPlist(val, 'per_'+ str(x))
 
+plist_sec = plist_org
+# plist_act = plist_org
 
+# Creates a 3 day master track
+z = 0
+while z < 3:
+    plist_act.append(plist_sec[0][z*50:userTrackLim]) # Appends global playlist
+    for x in range(len(config.users)):
+        plist_act.append(plist_sec[x+1][z*50:userTrackLim]) # Appends part of user plist based day
+        print()
+        
+    random.shuffle(plist_act)
+    plist_mas.append([plist_act])
 
-print(plist_sec)
+    plist_act =[]
+    z += 1
+    
+
+print(plist_org)
