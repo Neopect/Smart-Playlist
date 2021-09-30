@@ -100,3 +100,4 @@
   - [X] Add global playlist
   - [ ] Remove dups and replace with global
   - [X] Repeat 3 times
+  - [ ] Re-loop playlist if less than 150 tracks

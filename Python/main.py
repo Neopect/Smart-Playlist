@@ -88,9 +88,9 @@ plist_sec = plist_org
 # Creates a 3 day master track
 z = 0
 while z < 3:
-    plist_act.append(plist_sec[0][z*50:userTrackLim]) # Appends global playlist
+    plist_act.append(plist_sec[0][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends global playlist
     for x in range(len(config.users)):
-        plist_act.append(plist_sec[x+1][z*50:userTrackLim]) # Appends part of user plist based day
+        plist_act.append(plist_sec[x+1][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends part of user plist based day
         print()
         
     random.shuffle(plist_act)
