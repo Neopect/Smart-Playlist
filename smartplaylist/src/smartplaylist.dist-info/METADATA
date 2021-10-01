@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Briefcase-Version: 0.3.5
+Name: smartplaylist
+Formal-Name: Smart Playlist
+App-ID: com.tylermoen.smartplaylist
+Version: 0.0.1
+Home-page: https://tylermoen.com/smartplaylist
+Author: Tyler Moen
+Author-email: tylermmoen@gmail.com
+Summary: A Spotify app that creates group playlists based on a set of user's selected playlists.
