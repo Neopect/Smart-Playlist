@@ -74,6 +74,16 @@
 1. If same song is present remove dup
 2. Add random song from Uni list
 
+
+## On Demand creation
+1. Check if similar track is made
+2. Create playlist based on users
+3. Upload playlist
+4. Fetch all playlist
+5. Filter playlist by name and grab id
+6. Play playlist
+
+
 # Algorithm (Long version)
 - [X] Read config
   - [X] Create config file

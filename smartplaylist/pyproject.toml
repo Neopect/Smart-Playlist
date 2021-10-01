@@ -1,7 +1,7 @@
 [tool.briefcase]
 project_name = "Smart Playlist"
 bundle = "com.tylermoen"
-version = "0.0.1"
+version = "0.0.2"
 url = "https://tylermoen.com/smartplaylist"
 license = "GNU General Public License v3 (GPLv3)"
 author = 'Tyler Moen'
@@ -46,4 +46,5 @@ requires = [
 [tool.briefcase.app.smartplaylist.android]
 requires = [
     'toga-android>=0.3.0.dev20',
+    'spotipy>=2.19'
 ]
