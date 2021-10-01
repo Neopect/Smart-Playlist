@@ -2,7 +2,7 @@ config/
 testing.py
 testing/
 pNotes.md 
-
+configure/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

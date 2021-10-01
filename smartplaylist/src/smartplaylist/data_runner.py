@@ -1,6 +1,6 @@
 # Smart-Playlist app
 
-import config
+from . import config
 import os.path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -13,20 +13,25 @@ plist_act = []
 plist_mas = []
 global sp
 userTrackLim = 50
+usersExists = None
 
-print("Welcome to Smart-Playlist \nCreated by Tyler Moen\n")
+# print("Welcome to Smart-Playlist \nCreated by Tyler Moen\n")
 
-# Checks for config folder
-config_exists = os.path.isdir('config')
-if (config_exists == False):
-    config.genConfig()
-    quit()
-else:
-    config.readConfig()
-    config.formatCheck()
+# # Checks for config folder
+# config_exists = os.path.isdir('config')
+# if (config_exists == False):
+#     config.genConfig()
+#     quit()
+# else:
+#     config.readConfig()
+#     config.formatCheck()
+#     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.id,
+#                                                            client_secret=config.secret))
+
+def initSP():
+    global sp
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.id,
                                                            client_secret=config.secret))
-
 
 
 def downloadPlist(pid, name):
@@ -71,33 +76,33 @@ def mixComb():
 def dupCheck():
     print()
 
-
-# Download the playlist tracks to json
-for x, val in enumerate(config.gPlayl):
-    print("Opening universal playlists...")
-    downloadPlist(val, 'uni_'+ str(x))
-    
-
-for x, val in enumerate(config.playl):
-    print("Opening personal playlists...")
-    downloadPlist(val, 'per_'+ str(x))
-
-plist_sec = plist_org
-# plist_act = plist_org
-
-# Creates a 3 day master track
-z = 0
-while z < 3:
-    plist_act.append(plist_sec[0][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends global playlist
-    for x in range(len(config.users)):
-        plist_act.append(plist_sec[x+1][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends part of user plist based day
-        print()
+def org():
+    # Download the playlist tracks to json
+    for x, val in enumerate(config.gPlayl):
+        print("Opening universal playlists...")
+        downloadPlist(val, 'uni_'+ str(x))
         
-    random.shuffle(plist_act)
-    plist_mas.append([plist_act])
 
-    plist_act =[]
-    z += 1
-    
+    for x, val in enumerate(config.playl):
+        print("Opening personal playlists...")
+        downloadPlist(val, 'per_'+ str(x))
 
-print(plist_org)
+    plist_sec = plist_org
+    # plist_act = plist_org
+
+    # Creates a 3 day master track
+    z = 0
+    while z < 3:
+        plist_act.append(plist_sec[0][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends global playlist
+        for x in range(len(config.users)):
+            plist_act.append(plist_sec[x+1][z*userTrackLim:z*userTrackLim+userTrackLim]) # Appends part of user plist based day
+            print()
+            
+        random.shuffle(plist_act)
+        plist_mas.append([plist_act])
+
+        plist_act =[]
+        z += 1
+        
+
+    print(plist_org)

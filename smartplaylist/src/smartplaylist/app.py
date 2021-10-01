@@ -5,36 +5,40 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
-import config
+from . import config
+from . import data_runner
 
 
 class SmartPlaylist(toga.App):
 
     # ------------- control_box -----------------------------------
-    def btn_play_pressed():
+    def btn_play_pressed(self, widget):
         None
 
-    def btn_copy_pressed():
+    def btn_copy_pressed(self, widget):
         None
 
-    def btn_create_pressed():
+    def btn_create_pressed(self, widget):
         None
 
-    def btn_fetch_pressed():
+    def btn_fetch_pressed(self, widget):
         None
 
     # ------------- dbedit_box -----------------------------------
-    def btn_add_pressed():
+    def btn_add_pressed(self, widget):
+        lbl_status.text = "Adding user ..."
+        config.users.append(txt_plistid.value)
+        config.users.append(txt_user.value)
+        data_runner.downloadPlist(txt_plistid.value, txt_user.value)
+
+    def btn_update_pressed(self, widget):
         None
 
-    def btn_update_pressed():
-        None
-
-    def btn_remove_pressed():
+    def btn_remove_pressed(self, widget):
         None
 
     # ------------- Client_box -----------------------------------
-    def btn_login_pressed():
+    def btn_login_pressed(self, widget):
         None
 
 
@@ -47,6 +51,7 @@ class SmartPlaylist(toga.App):
         show the main window.
         """
         config.configRunner()
+        # data_runner.initSP()
 
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
@@ -101,6 +106,9 @@ class SmartPlaylist(toga.App):
         # >>>>>>>>>>>>>>>>>>>>>>> Entry Box <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         entry_box = toga.Box(style=Pack(direction=ROW, padding=5))
         
+        global txt_user
+        global txt_plistid
+
         txt_user = toga.TextInput(placeholder='enter name here')
         txt_plistid = toga.TextInput(placeholder='enter playlist id here')
 
@@ -148,8 +156,10 @@ class SmartPlaylist(toga.App):
         client_box.add(txt_secret)
         client_box.add(btn_login)
         
+        global lbl_status
+        lbl_status = toga.Label('Started')
 
-
+        main_box.add(lbl_status)
         main_box.add(control_box)
         main_box.add(toga.Divider())
         main_box.add(users_box)

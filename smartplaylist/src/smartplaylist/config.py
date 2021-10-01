@@ -1,123 +1,81 @@
 import os
 
 confFile = []
-id = "null"
-secret = "null"
+# id = "null"
+# secret = "null"
+spCred = []
 gPlayl = []
 playl = []
 users = []
-
+root = None
+rootConfig = None
 
 def genConfig():
     # Creates the basic config file for saving
     # and reading data for the program.
     print("Generating config folder...")
-    os.mkdir("config")
+    os.mkdir(rootConfig)
+    os.chdir(rootConfig)
 
     print("Generating config file...")
-    fw = open("config/config.conf", "w")
-    fw.write("# Config file for SP\n\n# Credentials\n")
-    fw.write("[Client-ID]\nInsert Client ID\n\n")
-    fw.write("[Client-Secret]\nInsert Client Secret\n\n")
-    fw.write("# Playlists\n")
-    fw.write("# Example format conversion: https://open.spotify.com/playlist/2fhUKHlUCiCMdHKsFvg5Vf?si=91a60e2726964e1f --> spotify:playlist:2fhUKHlUCiCMdHKsFvg5Vf \n")
-    fw.write("[Global-Playlists]\nInsert URI's for each global playlist\n\n")
-    fw.write("[Playlists]\nInsert URI's for each users playlist\n\n")
+    fw = open("sp", "w")
     fw.close()
+    fw = open("users", "w")
+    fw.close()
+    fw = open("globs", "w")
+    fw.write("3PGHzE2Tqab3V5xH6JyVcW")
+    fw.close()
+    
 
 def readConfig():
     # Reads config file and sets them
     # in the interrupter's memory
-    global id, secret, confFile
-    
-    fw = open("config/config.conf", "r")
+    global id, secret, confFile,  gPlayl
+    os.chdir(rootConfig)
+    # Reads cred file
+    fw = open("sp", "r")
     for x in fw:
-        confFile.append(x)
-    print(confFile)
-    
-    # <<<<<<<<<<<<<<<<<< CLEAN FILE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        spCred.append(x)
+    print(spCred)
 
-    xdex = 0
-    for x in confFile:
-        if "#" in x:
-            confFile.pop(xdex)
-        xdex += 1
-    print(confFile)
+    # Reads globs
+    fw = open("globs", "r")
+    for x in fw:
+        print("Adding to global playlist... " + x)
+        gPlayl.append(x)
+    print(gPlayl)
 
-    xdex = 0
-    for x in confFile:
-        if x == "\n":
-            confFile.pop(xdex)
-        xdex += 1
-
-    xdex = 0
-    for x in confFile:
-        if "\n" in x:
-            confFile[xdex] = x.replace("\n","")
-        xdex += 1
-
-    xdex = 0
-    for x in confFile:
-        if x == "":
-            confFile.pop(xdex)
-        xdex += 1
-
-    xdex = 0
-    for x in confFile:
-        if x.startswith('$'):
-            users.append(x[len('$'):])
-            confFile.pop(xdex)
-        xdex += 1
-
-
-    # =========================================================
-
-    # global id
-    id = confFile[1]
-    # global secret
-    secret = confFile[3]
-    print(id)
-    print(secret)
-
-    xdex = 0
-    ginst = False
-    uinst = False
-    for x, val in enumerate(confFile):
-
-        if uinst == True:
+    # Reads playlists
+    fw = open("users", "r")
+    for x, val in enumerate(fw):
+        if "\n" in val:
+            val = val.replace("\n","")
+        
+        if (x % 2) == 0:
             playl.append(val)
+        else:
             print("Adding to playlist... " + val)
-        if val == "[Playlists]":
-            uinst = True
-            ginst = False
+            users.append(val)
 
-        if ginst == True:
-            gPlayl.append(val)
-            print("Adding to global playlist... " + val)
-        if val == "[Global-Playlists]":
-            ginst = True
-
-        
-        
-    # print(id)
-    # print(secret)
-    # print(gPlayl)
-    # print(playl)
+    print(playl)
+    print(users)
 
 
-def formatCheck():
-    global playl
-    global gPlayl
-    # Checks if the urls are in proper format
-    for x, val in enumerate(playl):
-        if val.startswith("https://open.spotify.com/playlist/"):
-            print(val[len("https://open.spotify.com/playlist/"):-20])
-            playl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
-
-    for x, val in enumerate(gPlayl):
-        if val.startswith("https://open.spotify.com/playlist/"):
-            print(val[len("https://open.spotify.com/playlist/"):-20])
-            gPlayl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
             
 def configRunner():
+    # Checks for config folder
+    global root, rootConfig
+    root = os.path.dirname(os.path.abspath(__file__))
+    rootConfig = os.path.join(root, "configure")
+    os.chdir(root)
+
+    # config_exists = os.path.isdir(path)
+    if (os.path.isdir(rootConfig) == False):
+        genConfig()
+        # quit()
+    else:
+        readConfig()
+
+
+def appendData(file, data):
     None
