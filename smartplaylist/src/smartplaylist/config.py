@@ -119,3 +119,5 @@ def formatCheck():
             print(val[len("https://open.spotify.com/playlist/"):-20])
             gPlayl[x] = "spotify:playlist:" + val[len("https://open.spotify.com/playlist/"):-20]
             
+def configRunner():
+    None

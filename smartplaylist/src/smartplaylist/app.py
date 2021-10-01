@@ -5,6 +5,8 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
+import config
+
 
 class SmartPlaylist(toga.App):
 
@@ -44,6 +46,8 @@ class SmartPlaylist(toga.App):
         We then create a main window (with a name matching the app), and
         show the main window.
         """
+        config.configRunner()
+
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
         # >>>>>>>>>>>>>>>>>>>>>>> Control Box <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -79,11 +83,20 @@ class SmartPlaylist(toga.App):
         # >>>>>>>>>>>>>>>>>>>>>>> Users Box <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         users_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
 
-        input = toga.Switch("")
+        testl = []
+        x = 1
+        while x < 4:
+            testl.append(toga.Switch("number " + str(x)))
+            x += 1
+        # input = toga.Switch("")
+        for x in testl:
+            users_box.add(x)
 
-        users_box.add(input)
+        print(users_box.children)
 
-
+        if users_box.children[0].is_on == False:
+            print("Yesss")
+        
 
         # >>>>>>>>>>>>>>>>>>>>>>> Entry Box <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         entry_box = toga.Box(style=Pack(direction=ROW, padding=5))
