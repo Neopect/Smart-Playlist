@@ -19,6 +19,7 @@ def genConfig():
 
     print("Generating config file...")
     fw = open("sp", "w")
+    # fw.write("Userid\nsecert")
     fw.close()
     fw = open("users", "w")
     fw.close()
